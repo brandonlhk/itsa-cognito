@@ -18,10 +18,9 @@ class User(Base):
     email = Column(String(255), nullable=False, unique=True, index=True)
     full_name = Column(String(255), nullable=True)
     role = Column(SAEnum(UserRole), nullable=False, default=UserRole.AGENT)
-    password = Column(String(255), nullable=False)
     disabled = Column(Boolean, default=False, nullable=False)
     is_root = Column(Boolean, default=False, nullable=False)
-
+    cognito_sub = Column(String(255), nullable=True, unique=True, index=True)
 
 __table_args__ = (
     UniqueConstraint("email", name="uq_users_email"),
